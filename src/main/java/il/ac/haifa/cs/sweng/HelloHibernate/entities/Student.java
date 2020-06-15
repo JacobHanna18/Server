@@ -13,6 +13,9 @@ public class Student extends User {
     List<Course> Courses;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
     List<Grade> Grades;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
+    List<Answer> answers;
     public Student(String name, String id, String pass){
         super(name, id, pass);
         this.Courses = null;

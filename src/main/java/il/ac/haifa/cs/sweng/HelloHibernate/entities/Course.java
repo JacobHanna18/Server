@@ -34,6 +34,9 @@ public class Course {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "course")
     List<Grade> grades;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "course")
+    List<Answer> answers;
+
     public Course(Subject subject, Teacher teacher) {
         this.subject = subject;
         this.teacher = teacher;

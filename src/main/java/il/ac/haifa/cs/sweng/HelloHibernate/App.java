@@ -29,6 +29,7 @@ public class App
 		configuration.addAnnotatedClass(Student.class);
 		configuration.addAnnotatedClass(Subject.class);
 		configuration.addAnnotatedClass(Teacher.class);
+		configuration.addAnnotatedClass(Answer.class);
 
 
 		

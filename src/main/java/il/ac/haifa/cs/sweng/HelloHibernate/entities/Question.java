@@ -30,6 +30,9 @@ public class Question {
     )
     List<Exam> exams;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
+    List<Answer> answers;
+
     public Question(String q, String rightAnswer, String wrongAnswer1, String wrongAnswer2, String wrongAnswer3) {
         this.Q = q;
         this.RightAnswer = rightAnswer;
