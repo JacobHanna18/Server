@@ -3,6 +3,7 @@ package il.ac.haifa.cs.sweng.HelloHibernate.entities;
 import javax.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "subjects")
@@ -11,19 +12,22 @@ public class Subject {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
+
         String Name;
+
         @OneToMany(fetch = FetchType.LAZY, mappedBy = "subject")
-        ArrayList<Question> questions;
+        List<Question> questions;
+
         @OneToMany(fetch = FetchType.LAZY, mappedBy = "subject")
-        ArrayList<Exam> exams;
+        List<Exam> exams;
+
         @OneToMany(fetch = FetchType.LAZY, mappedBy = "subject")
-        ArrayList<Course> courses;
+        List<Course> courses;
 
         public Subject(String name) {
                 Name = name;
-                this.courses = null;
-                this.exams = null;
-                this.Name = null;
+                courses = null;
+                exams = null;
         }
 
         public String getName() {
@@ -34,7 +38,7 @@ public class Subject {
                 Name = name;
         }
 
-        public ArrayList<Question> getQuestions() {
+        public List<Question> getQuestions() {
                 return questions;
         }
 
@@ -42,7 +46,7 @@ public class Subject {
                 questions.add(question);
         }
 
-        public ArrayList<Exam> getExams() {
+        public List<Exam> getExams() {
                 return exams;
         }
 
@@ -50,7 +54,7 @@ public class Subject {
                 exams.add(exam);
         }
 
-        public ArrayList<Course> getCourses() {
+        public List<Course> getCourses() {
                 return courses;
         }
 

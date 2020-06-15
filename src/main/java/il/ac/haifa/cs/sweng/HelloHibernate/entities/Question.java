@@ -1,6 +1,7 @@
 package il.ac.haifa.cs.sweng.HelloHibernate.entities;
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "questions")
@@ -27,14 +28,14 @@ public class Question {
             joinColumns = @JoinColumn(name = "Question_id"),
             inverseJoinColumns = @JoinColumn(name = "Exam_id")
     )
-    ArrayList<Exam> exams;
+    List<Exam> exams;
 
     public Question(String q, String rightAnswer, String wrongAnswer1, String wrongAnswer2, String wrongAnswer3) {
-        Q = q;
-        RightAnswer = rightAnswer;
-        WrongAnswer1 = wrongAnswer1;
-        WrongAnswer2 = wrongAnswer2;
-        WrongAnswer3 = wrongAnswer3;
+        this.Q = q;
+        this.RightAnswer = rightAnswer;
+        this.WrongAnswer1 = wrongAnswer1;
+        this.WrongAnswer2 = wrongAnswer2;
+        this.WrongAnswer3 = wrongAnswer3;
         this.exams = null;
     }
 
@@ -78,7 +79,7 @@ public class Question {
         WrongAnswer3 = wrongAnswer3;
     }
 
-    public ArrayList<Exam> getExams() {
+    public List<Exam> getExams() {
         return exams;
     }
 

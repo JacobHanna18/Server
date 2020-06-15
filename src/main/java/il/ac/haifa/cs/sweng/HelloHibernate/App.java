@@ -7,6 +7,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import il.ac.haifa.cs.sweng.HelloHibernate.entities.*;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,8 +22,15 @@ public class App
 	private static SessionFactory getSessionFactory() throws HibernateException {
 		Configuration configuration =new Configuration();
 		configuration.addAnnotatedClass(Course.class);
+		configuration.addAnnotatedClass(Exam.class);
+		configuration.addAnnotatedClass(Grade.class);
+		configuration.addAnnotatedClass(Principle.class);
+		configuration.addAnnotatedClass(Question.class);
 		configuration.addAnnotatedClass(Student.class);
-		configuration.addAnnotatedClass(Lecturer.class);
+		configuration.addAnnotatedClass(Subject.class);
+		configuration.addAnnotatedClass(Teacher.class);
+
+
 		
 		ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 				.applySettings(configuration.getProperties())
@@ -32,39 +40,18 @@ public class App
 	}
 	
 	private static void initializeData() throws Exception {
-		
-		Lecturer oren = new Lecturer("Oren", "Weimann");
-		Lecturer gadi = new Lecturer("Gadi", "Landau");
-		Lecturer rachel = new Lecturer("Rachel", "Kolodny");
-		
-		session.save(oren);
-		session.save(gadi);
-		session.save(rachel);
-		
+
+		Teacher t = new Teacher("zonaaa2","7894561235","123");
+		session.save(t);
+
+		Subject s = new Subject("Computer Science");
+		System.out.println(s.getName());
+		session.save(s);
+
+		Course c = new Course(s,t);
+		session.save(c);
+
 		session.flush();
-		
-		Course dsOren = new Course("Data Structures", oren);
-    	Course dsGadi = new Course("Data Structures for non-programmers", gadi);
-    	Course osRachel = new Course("Operating Systems", rachel);
-    	Course sciProgramming = new Course("Scientific Programming", rachel);
-    	
-    	session.flush();
-    	
-    	session.save(dsOren);
-    	session.save(dsGadi);
-    	session.save(osRachel);
-    	session.save(sciProgramming);
-    	
-    	session.flush();
-    	
-    	Student haim = new Student("Haim", "Blabla");
-    	haim.addCourses(dsOren, osRachel);
-    	session.save(haim);
-    	
-    	Student shlomi = new Student("Shlomi", "Ben Artzi");
-    	shlomi.addCourses(dsGadi, osRachel);
-    	session.save(shlomi);
-    	
     	session.getTransaction().commit();
 	}
 	
@@ -90,47 +77,10 @@ public class App
         	
         	initializeData();
         	
-        	List<Student> students = getAll(Student.class);
+        	List<Teacher> teachers = getAll(Teacher.class);
         	
-        	System.out.println("Students list:");
-        	for (Student student : students) {
-        		System.out.format("ID: %d, Name: %s %s, Courses:\n",
-        				student.getId(), student.getFirstName(),
-        				student.getLastName());
-        		for (Course course : student.getCourseList()) {
-        			System.out.format(" - Name: %s, Lecturer: %s %s\n",
-        					course.getName(),
-        					course.getLecturer().getFirstName(),
-        					course.getLecturer().getLastName());
-        		}
-        	}
-        	
-        	List<Course> courses = getAll(Course.class);
-        	
-        	System.out.println("\n\nCourses list:");
-        	for (Course course : courses) {
-        		System.out.format("ID: %d, Name: %s, Lecturer: %s %s, Students:\n",
-        				course.getId(), course.getName(),
-        				course.getLecturer().getFirstName(),
-        				course.getLecturer().getLastName());
-        		for (Student student : course.getStudents()) {
-        			System.out.format(" - Name: %s %s\n",
-        					student.getFirstName(), student.getLastName());
-        		}
-        	}
-        	
-        	List<Lecturer> lecturers = getAll(Lecturer.class);
-        	System.out.println("\n\nLecturers list:");
-        	for (Lecturer lecturer : lecturers) {
-        		System.out.format("Name: %s %s, Courses:\n",
-        				lecturer.getFirstName(), lecturer.getLastName());
-        		
-        		for (Course course : lecturer.getCourses()) {
-        			System.out.format(" - Name: %s\n", course.getName());
-        		}
-        	}
-        	System.out.format("\n\n");
-        	System.out.println("Done!");
+        	System.out.println(teachers.get(0).getName());
+
         	
         	
         } catch (Exception e) {

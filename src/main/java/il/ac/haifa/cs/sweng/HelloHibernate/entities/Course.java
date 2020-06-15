@@ -1,5 +1,6 @@
 package il.ac.haifa.cs.sweng.HelloHibernate.entities;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -29,15 +30,13 @@ public class Course {
             joinColumns = @JoinColumn(name = "Course_id"),
             inverseJoinColumns = @JoinColumn(name = "Student_id")
     )
-    ArrayList<Student> students;
+    List<Student> students;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "course")
-    ArrayList<Grade> grades;
+    List<Grade> grades;
 
-    public Course(Subject subject, Teacher teacher, Exam exam, int accessCode) {
+    public Course(Subject subject, Teacher teacher) {
         this.subject = subject;
         this.teacher = teacher;
-        this.exam = exam;
-        AccessCode = accessCode;
         this.students = null;
         this.grades = null;
     }
@@ -74,7 +73,7 @@ public class Course {
         AccessCode = accessCode;
     }
 
-    public ArrayList<Student> getStudents() {
+    public List<Student> getStudents() {
         return students;
     }
 
@@ -82,7 +81,7 @@ public class Course {
         students.add(student);
     }
 
-    public ArrayList<Grade> getGrades() {
+    public List<Grade> getGrades() {
         return grades;
     }
 

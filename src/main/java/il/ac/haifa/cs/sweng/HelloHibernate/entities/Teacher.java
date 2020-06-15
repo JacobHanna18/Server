@@ -9,7 +9,7 @@ import java.util.*;
 @Table(name = "teachers")
 public class Teacher extends  User{
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "teacher")
-    ArrayList<Course> Courses ;
+    List<Course> Courses ;
     public Teacher(String name, String id, String pass){
         super(name, id, pass);
         this.Courses = null;

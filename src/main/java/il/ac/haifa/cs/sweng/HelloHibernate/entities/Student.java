@@ -10,9 +10,9 @@ public class Student extends User {
             cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             targetEntity = Course.class
     )
-    ArrayList<Course> Courses;
+    List<Course> Courses;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
-    ArrayList<Grade> Grades;
+    List<Grade> Grades;
     public Student(String name, String id, String pass){
         super(name, id, pass);
         this.Courses = null;
