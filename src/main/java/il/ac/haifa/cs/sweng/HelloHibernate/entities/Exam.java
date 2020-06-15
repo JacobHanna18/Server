@@ -9,11 +9,16 @@ public class Exam {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @ManyToMany(mappedBy = "exams",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            targetEntity = Question.class
+    )
     ArrayList<Question> Questions;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Subject_id")
     Subject subject;
     int Id;
-
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "exam")
     ArrayList<Course> courses;
 
     public Exam(Subject subject, int id) {

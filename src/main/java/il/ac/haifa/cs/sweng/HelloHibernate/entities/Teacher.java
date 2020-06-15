@@ -8,7 +8,7 @@ import java.util.*;
 @Entity
 @Table(name = "teachers")
 public class Teacher extends  User{
-
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "teacher")
     ArrayList<Course> Courses ;
     public Teacher(String name, String id, String pass){
         super(name, id, pass);

@@ -15,6 +15,18 @@ public class Question {
     String WrongAnswer1;
     String WrongAnswer2;
     String WrongAnswer3;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Subject_id")
+    Subject subject;
+    @ManyToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            targetEntity = Exam.class
+    )
+    @JoinTable(
+            name = "Questions_Exams",
+            joinColumns = @JoinColumn(name = "Question_id"),
+            inverseJoinColumns = @JoinColumn(name = "Exam_id")
+    )
     ArrayList<Exam> exams;
 
     public Question(String q, String rightAnswer, String wrongAnswer1, String wrongAnswer2, String wrongAnswer3) {

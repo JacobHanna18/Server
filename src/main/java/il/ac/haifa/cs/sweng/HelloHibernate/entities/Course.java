@@ -1,11 +1,7 @@
 package il.ac.haifa.cs.sweng.HelloHibernate.entities;
 import java.util.ArrayList;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "courses")
@@ -14,12 +10,27 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Subject_id")
     Subject subject;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Teacher_id")
     Teacher teacher;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Exam_id")
     Exam exam;
     int AccessCode;
+    @ManyToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            targetEntity = Student.class
+    )
+    @JoinTable(
+            name = "Students_Courses",
+            joinColumns = @JoinColumn(name = "Course_id"),
+            inverseJoinColumns = @JoinColumn(name = "Student_id")
+    )
     ArrayList<Student> students;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "course")
     ArrayList<Grade> grades;
 
     public Course(Subject subject, Teacher teacher, Exam exam, int accessCode) {

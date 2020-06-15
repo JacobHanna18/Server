@@ -10,7 +10,11 @@ public class Grade {
     private int id;
 
     int grade;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Student_id")
     Student student;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Course_id")
     Course course;
 
     public int getGrade() {

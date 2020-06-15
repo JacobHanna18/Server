@@ -11,12 +11,12 @@ public class Subject {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
-
         String Name;
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "subject")
         ArrayList<Question> questions;
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "subject")
         ArrayList<Exam> exams;
-
-
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "subject")
         ArrayList<Course> courses;
 
         public Subject(String name) {
