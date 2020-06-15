@@ -1,5 +1,14 @@
 package il.ac.haifa.cs.sweng.HelloHibernate.entities;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "grades")
 public class Grade {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     int grade;
     Student student;
     Course course;

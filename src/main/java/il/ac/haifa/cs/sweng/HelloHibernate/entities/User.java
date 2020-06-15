@@ -1,8 +1,14 @@
 package il.ac.haifa.cs.sweng.HelloHibernate.entities;
+
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public class User {
 
-    String Name;
+    @Id
     String Id;
+    String Name;
     String Pass;
 
     public User(String name, String id, String pass) {

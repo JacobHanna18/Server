@@ -1,10 +1,22 @@
 package il.ac.haifa.cs.sweng.HelloHibernate.entities;
+
+import javax.persistence.*;
+
 import java.util.ArrayList;
 
+@Entity
+@Table(name = "subjects")
 public class Subject {
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private int id;
+
         String Name;
         ArrayList<Question> questions;
         ArrayList<Exam> exams;
+
+
         ArrayList<Course> courses;
 
         public Subject(String name) {

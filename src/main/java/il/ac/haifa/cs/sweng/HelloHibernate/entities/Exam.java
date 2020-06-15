@@ -1,10 +1,20 @@
 package il.ac.haifa.cs.sweng.HelloHibernate.entities;
+import javax.persistence.*;
 import java.util.*;
 
+@Entity
+@Table(name = "exams")
 public class Exam {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     ArrayList<Question> Questions;
     Subject subject;
     int Id;
+
+    ArrayList<Course> courses;
 
     public Exam(Subject subject, int id) {
         this.Questions = null;

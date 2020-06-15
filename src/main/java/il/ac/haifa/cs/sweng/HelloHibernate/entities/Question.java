@@ -1,7 +1,15 @@
 package il.ac.haifa.cs.sweng.HelloHibernate.entities;
+import javax.persistence.*;
 import java.util.ArrayList;
 
+@Entity
+@Table(name = "questions")
 public class Question {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     String Q;
     String  RightAnswer;
     String WrongAnswer1;

@@ -1,6 +1,10 @@
 package il.ac.haifa.cs.sweng.HelloHibernate.entities;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.*;
 
+@Entity
+@Table(name = "students")
 public class Student extends User {
 
     ArrayList<Course> Courses;
