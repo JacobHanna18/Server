@@ -30,8 +30,6 @@ public class App
 		configuration.addAnnotatedClass(Subject.class);
 		configuration.addAnnotatedClass(Teacher.class);
 		configuration.addAnnotatedClass(Answer.class);
-
-
 		
 		ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 				.applySettings(configuration.getProperties())
@@ -61,7 +59,6 @@ public class App
 		CriteriaQuery<T> criteriaQuery = builder.createQuery(object);
 		Root<T> rootEntry = criteriaQuery.from(object);
 		CriteriaQuery<T> allCriteriaQuery = criteriaQuery.select(rootEntry);
-		
 		TypedQuery<T> allQuery = session.createQuery(allCriteriaQuery);
 		return allQuery.getResultList();
 	}

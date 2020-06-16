@@ -35,6 +35,9 @@ public class Course {
     List<Grade> grades;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "course")
+    List<Request> requests;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "course")
     List<Answer> answers;
 
     public Course(Subject subject, Teacher teacher) {
