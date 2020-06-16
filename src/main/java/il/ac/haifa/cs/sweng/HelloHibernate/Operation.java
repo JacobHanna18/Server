@@ -1,3 +1,5 @@
+package il.ac.haifa.cs.sweng.HelloHibernate;
+
 public enum Operation {
     LogIn //log in user into system
     //userid, password -> student/teacher/principle
