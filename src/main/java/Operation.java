@@ -1,5 +1,6 @@
 public enum Operation {
     LogIn //log in user into system
+    //userid, password -> student/teacher/principle
     ,StudentGrades //view grades of student
     ,StudentExamFile //view exam file
     ,GetOnlineExam //get online exam

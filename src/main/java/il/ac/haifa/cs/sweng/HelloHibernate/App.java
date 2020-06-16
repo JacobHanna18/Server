@@ -1,6 +1,8 @@
 package il.ac.haifa.cs.sweng.HelloHibernate;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -8,6 +10,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import il.ac.haifa.cs.sweng.HelloHibernate.entities.*;
+import jdk.dynalink.Operation;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -62,8 +65,15 @@ public class App
 		TypedQuery<T> allQuery = session.createQuery(allCriteriaQuery);
 		return allQuery.getResultList();
 	}
-	
-    public static void main( String[] args )
+
+	public static void main (String[] args){
+		json j = new json("{\"last\":\"hello\",\"name\":true,\"fuun\":100.783,\"operation\":100}");
+
+		System.out.println(j.get("name"));
+		System.out.println(j.get("last"));
+		System.out.println(j.toString());
+	}
+    public static void main2( String[] args )
     {
         try {
         	
