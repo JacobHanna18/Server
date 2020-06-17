@@ -37,6 +37,7 @@ public class App
 		configuration.addAnnotatedClass(Subject.class);
 		configuration.addAnnotatedClass(Teacher.class);
 		configuration.addAnnotatedClass(Answer.class);
+		configuration.addAnnotatedClass(Request.class);
 		
 		ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 				.applySettings(configuration.getProperties())
@@ -70,13 +71,14 @@ public class App
 		return allQuery.getResultList();
 	}
 
-	public static void main (String[] args){
-
+	public static void main2 (String[] args){
+		Course s = App.session.get(Course.class,"1");
+		System.out.println(s.getTeacher().getName());
 //		Gson g = new Gson();
 //		System.out.println(g.toJson(arr));
 //		System.out.println(g.fromJson(g.toJson(arr), jsonobject[].class)[2].i);
 	}
-    public static void main2( String[] args )
+    public static void main( String[] args )
     {
         try {
         	
@@ -87,10 +89,9 @@ public class App
         	session.beginTransaction();
         	
         	initializeData();
-        	
-        	List<Teacher> teachers = getAll(Teacher.class);
-        	
-        	System.out.println(teachers.get(0).getName());
+
+			Course s = App.session.get(Course.class,"1");
+			System.out.println(s.getSubject().getName());
 
         	
         	
